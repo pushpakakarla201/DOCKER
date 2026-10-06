@@ -1,0 +1,34 @@
+#TASK
+#Create a GitHub repository
+#Put the HTML/application code in it
+#Put the Dockerfile in it
+#Jenkins gets the code from GitHub
+#Stage 1: Checkout/source code
+#Stage 2: Build the Docker image
+#Stage 3: Create/run the Docker container
+#Install Jenkins + Docker + Java on the Jenkins server
+#If Jenkins gets Docker permission denied, fix the permission and run the pipeline again.
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('code') {
+            steps {
+                git branch: 'main', credentialsId: 'git cred', url: 'https://github.com/pushpakakarla201/sampledocker-practice.git'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh'docker build -t myimage .'
+            }
+        }
+        stage('create container') {
+            steps {
+                sh'docker run -itd --name cont1 -p 1111:80 myimage'
+            }
+        }
+    }
+}
