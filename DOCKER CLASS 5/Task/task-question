@@ -1,0 +1,2 @@
+Write a production-grade Dockerfile for a Python application, build and scan the image,
+then run and verify the application in a Docker container
