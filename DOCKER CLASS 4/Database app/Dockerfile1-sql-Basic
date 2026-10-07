@@ -1,0 +1,26 @@
+# Use the official Node.js image
+FROM node
+
+# Expose port 3000 for the application
+EXPOSE 3000
+
+# Specify the maintainer of the image
+MAINTAINER pushpa
+
+# Add a label to describe the image
+LABEL this is our image
+
+# Set the working directory inside the container
+WORKDIR /myapp
+
+# Copy package.json and package-lock.json files into the working directory
+COPY package*.json ./
+
+# Install the Node.js application dependencies
+RUN npm install
+
+# Copy all application files into the working directory
+COPY . .
+
+# Start the Node.js application using index.js
+CMD ["node","index.js"]
